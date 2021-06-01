@@ -1,0 +1,63 @@
+#root {
+    display: flex;
+    justify-content: center;
+}
+
+#score {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#box {
+    box-sizing: content-box;
+    padding: 1px;
+    position: relative;
+}
+
+#infoBox {
+    box-sizing: content-box;
+    padding: 1px;
+    position: relative;
+    font-size: 20px;
+    font-weight: bold;
+    width: 130px;
+}
+
+#scoreBox {
+    position: relative;
+    padding-right: 1.5em;
+    display: inline-block;
+}
+
+.addScore {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: all 1s;
+}
+
+.button {
+    background-color: #8BC34A;
+    cursor: pointer;
+    user-select: none;
+    padding: 7px;
+    transition: all 0.2s;
+    display: inline-block;
+    margin-bottom: 1px;
+    min-width: 60px;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #cddc39;
+}
+
+.block {
+    position: absolute;
+    transform: translate(0px, 0px);
+    border: 1px solid white;
+    box-sizing: border-box;
+    transition: transform 0.1s, background 0.1s, opacity 0.5s;
+    opacity: 1;
+}
+
