@@ -1,3 +1,6 @@
+/**
+ * audio 池， 减少创建和销毁audio的开销
+ */
 export function audioPool({
     count = 20
 } = {}) {
@@ -33,7 +36,9 @@ export function audioPool({
     }
 }
 
-
+/**
+ * 抖动元素：改变元素的 translate
+ */
 export function shake(element) {
     element.style.transform = `translate(5px, 5px)`
     setTimeout(() => {

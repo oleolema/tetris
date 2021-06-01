@@ -4,29 +4,25 @@ import {
 
 } from './utils.js'
 
+// 盒子高度（单位：方块）
 export const boxHeight = 20;
+// 盒子宽度为高度的一半
 export const boxWidth = ~~(boxHeight / 2);
-export const unit = ~~((innerHeight - innerHeight * 0.2) / boxHeight)
+export const unit = ~~((innerHeight - innerHeight * 0.2) / boxHeight);
+// 下落速度 （值越小越快）
 export const speed = 500;
 
-console.info(boxHeight, boxWidth)
-
-
-
-export let map = [...new Array(boxHeight)].map(it => new Array(boxWidth).fill(null));
 
 export const box = document.querySelector('#box');
 export const infoBox = document.querySelector('#infoBox');
 export const scoreBox = document.querySelector('#scoreBox');
-
-
 export const root = document.querySelector('#root');
-
 const retry = document.querySelector('#retry');
-
 const pause = document.querySelector('#pause');
 
-let blocks;
+const audio = audioPool();
+let blocks = new Blocks().randomCreate();
+export let map = [...new Array(boxHeight)].map(it => new Array(boxWidth).fill(null));
 
 box.style.width = `${unit * boxWidth }px`;
 box.style.height = `${unit * boxHeight }px`;
@@ -58,15 +54,11 @@ pause.addEventListener('click', () => {
     }
 });
 
-blocks = new Blocks().randomCreate();
 
-const audio = audioPool();
+
+
 
 function playAudioBetween(startTime, durringTime) {
-    // const a = new Audio("./music.mp3");
-    // a.currentTime = startTime / 1000;
-    // a.play();
-
     const a = audio.get();
     a.src = "./music.mp3";
     a.currentTime = startTime / 1000;
@@ -90,5 +82,3 @@ export function playAudio(type) {
 
     }
 }
-
-window.playAudioBetween = playAudioBetween;

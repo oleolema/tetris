@@ -14,7 +14,6 @@ import {
 } from './Shapes.js';
 import {
     shake,
-
 } from './utils.js'
 
 const scoreDom = document.querySelector('#score');
@@ -122,11 +121,7 @@ export default class Blocks {
     }
 
     isGameOver() {
-        const b = this.block.find(it => it.y <= 0);
-        if (b) {
-            playAudio('gameOver');
-        }
-        return b;
+        return this.block.find(it => it.y <= 0);
     }
 
     left() {
@@ -147,7 +142,7 @@ export default class Blocks {
         return true;
     }
 
-    down(music) {
+    down() {
         // blocks fixed
         if (this.block.find(it => it.y >= boxHeight - 1 || map[it.y + 1][it.x] !== null)) {
             this.block.forEach(it => {
@@ -289,6 +284,7 @@ export default class Blocks {
         }
         if (this.isGameOver()) {
             console.info("game over");
+            playAudio('gameOver');
             return;
         }
         addScore(this.block.length);
@@ -323,6 +319,9 @@ export default class Blocks {
 
 }
 
+/**
+ * 每一个小方块
+ */
 export class Block {
     x;
     y;
@@ -336,7 +335,6 @@ export class Block {
         this.color = color;
         this.text = text;
     }
-
 
     create(parent) {
         parent = parent || box;
@@ -359,7 +357,12 @@ export class Block {
 
 }
 
-
+/**
+ * 增加分数，并显示过渡动画
+ * @param {*} value 增加的值
+ * @param {*} color 动画颜色
+ * @param {*} size 动画字体大小
+ */
 function addScore(value, color, size) {
     score += value;
     const div = document.createElement('div');
